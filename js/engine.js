@@ -45,6 +45,16 @@ var RenderManager = function (engine) {
         this.context = canvas.getContext("2d");
     };
 
+    this.clearCanvas = function (colour) {
+        this.drawRect(0, 0, this.canvas.width, this.canvas.height, colour);
+    };
+
+    this.drawRect = function (x, y, w, h, colour) {
+        this.context.fillStyle = colour;
+        this.context.fillRect(x, y, w, h);
+        this.context.fill();
+    };
+
     this.drawImage = function (x, y, image) {
 
         this.context.drawImage(image, x, y);
@@ -114,6 +124,10 @@ var Map = function (width, height, depth, fillType, twidth, theight, tile_table)
             }
         }
     };
+
+    this.clear = function () {
+        this.set_cube(0, 0, 0, this.width, this.height, this.depth, -1);
+    }
 
     this.generate_heightmap = function (type) {
         noise.seed(Math.random());
