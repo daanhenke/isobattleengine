@@ -19,5 +19,5 @@ function newScene() {
     GameEngine.RenderManager.clearCanvas("white");
     map.clear();
     map.generate_heightmap(0);
-    GameEngine.RenderManager.drawMap(300, 100, map);
+    GameEngine.RenderManager.drawMapWithDelayEffectLolY(300, 100, map, 3);
 }
