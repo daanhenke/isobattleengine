@@ -128,13 +128,22 @@ var Map = function (width, height, depth, fillType, twidth, theight, tile_table)
     this.clear = function () {
         this.set_cube(0, 0, 0, this.width, this.height, this.depth, -1);
     }
+    
+    this.gen_settings = {
+        offset_x: 0,
+        offset_y: 0,
+        devider_position: 50,
+        default_value: 3,
+        multiplier_base: 8,
+        multiplier_value: 3
+    };
 
     this.generate_heightmap = function (type) {
         noise.seed(Math.random());
         for (var cx = 0; cx < this.width; cx++) {
             for (var cy = 0; cy < this.height; cy++) {
-                depth = Math.abs(noise.perlin2((cx + 500) / 50, (cy + 300) / 50));
-                depth += Math.max(0, (3 - depth * 8) * 3);
+                depth = Math.abs(noise.perlin2((cx + this.get_settings.offset_x) / this.get_settings.divider_position, (cy + this.get_settings.offset_y) / this.get_settings.devider_position));
+                depth += Math.max(0, (this.get_settings.default_value - depth * this.get_settings.multiplier_base) * this.get_settings.multiplier_value);
                 console.log(depth);
                 for (var cz = 0; cz < depth; cz++) {
                     this.map[cx][cy][cz] = type;
