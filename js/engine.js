@@ -129,7 +129,7 @@ var Map = function (width, height, depth, fillType, twidth, theight, tile_table)
         this.set_cube(0, 0, 0, this.width, this.height, this.depth, -1);
     }
     
-    this.gen_settings = {
+    this.get_settings = {
         offset_x: 0,
         offset_y: 0,
         devider_position: 50,
